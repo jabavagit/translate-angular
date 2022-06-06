@@ -1,0 +1,12 @@
+<nav class="navbar fixed-top navbar-light bg-light mb">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            Translate Json <span *ngIf="showBread" class="m-2">{{arrayToString()}} > </span>
+            <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="showBread" (click)="generateJson()">Generar JSON</button>
+        </a>
+
+        <form class="d-flex">
+            <input class="form-control me-2" type="text" placeholder="Search" (keyup)="search($event)">
+        </form>
+    </div>
+</nav>

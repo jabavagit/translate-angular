@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Importar traducciones</h4>
+  <button type="button" class="" data-dismiss="modal" aria-label="Close" (click)="closeModal('close')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!--form class="m-3" [formGroup]="importForm" *ngIf="showForm">
+    <div class="form-group mb-2">
+      <label for="file-import" *nfIf="false">Seleccione fichero JSON</label>
+      <input type="file" class="form-control-file" formControlName="fileImport" id="file-import" />
+    </div>
+    <button type="button" class="btn btn-primary mb-2" [disabled]="disabledBtnSubmit()" (click)="clickSubmit()">
+      <span *ngIf="!isLoading">Importar</span>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+    </button>
+  </!--form -->
+  <button type="button" class="btn btn-primary mb-2" [disabled]="disabledBtnSubmit()" (click)="clickSubmit()">
+    <span *ngIf="!isLoading">Importar</span>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+  </button>
+  <div>
+    
+  </div>
+</div>

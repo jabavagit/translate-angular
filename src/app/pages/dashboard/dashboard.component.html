@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row mb-5">
+        <div class="col mb-5">
+            <app-navbar [breadcrumb]="model.breadcrumb" [showBread]="show.breadcrumb"
+                (keyUpSearchEvent)="eventSearch($event)" (generateJsonEvent)="eventGenerateJson($event)"></app-navbar>
+        </div>
+    </div>
+    <div class="row ps-5 mb-5 d-flex align-self-start justify-content-center">
+        <div class="col-12" *ngIf="!show.loading.status">
+            <div class="row">
+                <div class="col-2">
+                    <app-menu *ngIf="show.menu" [menu]="model.menu" (clickItemEvent)="getProjectSelected($event)" (btnImportEvent)="btnImport($event)">
+                    </app-menu>
+
+                    <app-log *ngIf="show.alert" [alerts]="model.alerts.slice(-5)"></app-log>
+                </div>
+                <div class="col-9 px-5">
+                    <div class="row">
+                        <div class="col card p-3" style="max-width: 20rem;" *ngIf="show.list.loading.status">
+                            <div class="card-body d-flex  align-items-center justify-content-center flex-column">
+                                <div class="spinner-border d-inline-flex p-2 mb-3" role="status">
+                                </div>
+                                <span class="d-flex p-2">{{show.list.loading.message}}</span>
+                            </div>
+                        </div>
+    
+                        <app-list-literals class="col" *ngIf="show.data" [selectedProject]="model.selectedProject"
+                            [alerts]="model.alerts" (clickLiteralEvent)="openModalForm($event)"></app-list-literals>
+
+                            <app-import-literals *ngIf="show.dataImport"  [model]="model.importData"></app-import-literals>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- loading -->
+
+        <div class="card p-3" style="max-width: 20rem;" *ngIf="show.loading.status">
+            <div class="card-body d-flex  align-items-center justify-content-center flex-column">
+                <div class="spinner-border d-inline-flex p-2 mb-3" role="status">
+                </div>
+                <span class="d-flex p-2">{{show.loading.message}}</span>
+            </div>
+        </div>
+
+        <!-- Error -->
+        <div class="card border-danger mb-3" *ngIf="show.error.status">
+            <div class="card-body text-danger">
+                <h5 class="card-title">{{show.error.title}}</h5>
+                <p class="card-text">{{show.error.message}}</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

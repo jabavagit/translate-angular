@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{model.title}}</h4>
+
+    <button type="button" class="" data-dismiss="modal" aria-label="Close" (click)="closeModal('close')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form class="m-3" [formGroup]="translateForm">
+        <div *ngIf="fromParent.isNew">
+            <div class="form-group mb-5">
+                <label for="name-literal" class="mb-2">Nombre</label>
+                <input class="form-control mb-2" id="name-literal" formControlName="nameLiteral" placeholder="Nombre literal"
+                    [ngModel]="model.nameLiteral" (ngModelChange)="nameLiteralChange($event)"
+                    [ngClass]="{'is-invalid':existName}" >
+                <small class="text-danger p-2" *ngIf="existName">
+                    Ya existe
+                </small>
+            </div>
+        </div>
+
+        <ul class=" nav nav-tabs my-2">
+            <li class="nav-item" *ngFor="let lang of arrLangs; let i = index">
+                <a id="{{lang}}" [ngClass]="{active: isActive(i)}" (click)="selectTab(i, lang)" class="nav-link"
+                    href="javascript:void(0)">{{lang}}<span *ngIf="checkEditData(lang)">*</span></a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="form-group">
+                <label for="message-text" class="col-form-label mb-2">Texto</label>
+                <textarea (change)="changeDataTextarea()" class="form-control" id="message-text"
+                    formControlName="messageText"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-lg m-1" [disabled]="disabledBtnSubmit()" (click)="saveData()">
+        <span *ngIf="!isLoading">Guardar</span>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
+    </button>
+</div>
