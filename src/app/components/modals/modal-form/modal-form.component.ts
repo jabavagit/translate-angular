@@ -49,8 +49,8 @@ export class ModalFormComponent implements OnInit {
         //this.model.lang = this.fromParent.selectedLit.lang;
       } else {
         this.model.title = this.fromParent.selectedLit.name;
-        this.model.lang = this.fromParent.selectedLit.lang;
-        this.setValue(this.model.lang[this.model.selectedLang], 'messageText');
+        this.model.lang = this.fromParent.selectedLit.langs;
+        this.setValue(this.model.lang[this.model.selectedLangs], 'messageText');
       }
     }
 
@@ -60,7 +60,7 @@ export class ModalFormComponent implements OnInit {
   closeModal(data: any) {
     if (data.message === 'close') {
       this.model = this.originModel;
-      this.fromParent.selectedLit.lang = this.originModel.lang;
+      this.fromParent.selectedLit.langs = this.originModel.langs;
     }
     this.activeModal.close(data);
   }
@@ -106,7 +106,7 @@ export class ModalFormComponent implements OnInit {
   }
 
   changeDataTextarea() {
-    const originData = this.originModel.lang[this.model.selectedLang];
+    const originData = this.originModel.langs[this.model.selectedLang];
     const editData = this.model.lang[this.model.selectedLang] = this.getValue('messageText');
     this.model.tabsEdit[this.model.selectedLang] = originData !== editData;
     this.disabledBtnSubmit();
@@ -124,10 +124,10 @@ export class ModalFormComponent implements OnInit {
         id: 0,
         isNew: true,
         name: this.model.nameLiteral,
-        lang: this.model.lang
+        langs: this.model.lang
       };
     }
-    
+
     this.apiService.setDataLit(this.fromParent).subscribe((data: any) => {
       if (data.code === 200) {
         this.closeModal(data);

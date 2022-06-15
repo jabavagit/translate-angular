@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
       if (!isError) {
         this.show.menu = true;
         this.show.loading.status = false;
-        this.model.menu = data;
+        this.model.menu = data.dashboard.menu;
 
         this.setLog(this.typeLog.INFO, 'Inicio OK');
       } else {
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
 
   /**
    * Event emit to click item menu.
-   * @param selectedItem 
+   * @param selectedItem
    */
   getProjectSelected(selectedItem?: any) {
     let id = null;
@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
 
   /**
    * Event emit to keyup input search.
-   * @param data 
+   * @param data
    */
   eventSearch(data: any) {
     let result = [];

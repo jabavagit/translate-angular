@@ -77,14 +77,14 @@ export class ListLiteralsComponent implements OnInit {
       const literal = this.originSelectedProject.literals[i];
       let result = false;
       let count = 0;
-      for (const key in literal.lang) {
-        if (Object.prototype.hasOwnProperty.call(literal.lang, key) && literal.lang[key].length === 0) {
+      for (const key in literal.langs) {
+        if (Object.prototype.hasOwnProperty.call(literal.langs, key) && literal.langs[key].length === 0) {
           result = true;
           count++;
         }
       }
 
-      if (count === Object.keys(literal.lang).length) {
+      if (count === Object.keys(literal.langs).length) {
         countUn++;
       }
 
@@ -120,8 +120,8 @@ export class ListLiteralsComponent implements OnInit {
       if (Object.prototype.hasOwnProperty.call(origin.literals, key)) {
         const __literal = origin.literals[key];
         let result = false;
-        for (const key in __literal.lang) {
-          if (Object.prototype.hasOwnProperty.call(__literal.lang, key) && __literal.lang[key].length === 0) {
+        for (const key in __literal.langs) {
+          if (Object.prototype.hasOwnProperty.call(__literal.langs, key) && __literal.langs[key].length === 0) {
             result = true;
             count++;
           }
@@ -131,7 +131,7 @@ export class ListLiteralsComponent implements OnInit {
           listData.push(__literal);
         }
 
-        if (count === Object.keys(__literal.lang).length) {
+        if (count === Object.keys(__literal.langs).length) {
           listDataUn.push(__literal);
         }
       }

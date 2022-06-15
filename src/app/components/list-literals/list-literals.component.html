@@ -1,48 +1,51 @@
-<div>
-    <div class="mb-3">
-        <div class="btn-group btn-group-sm" role="group">
-            <button id="filter-all" type="button" class="btn btn-outline-secondary text-muted active"
-                (click)="clickFilter('all')">
-                Mostrar todos
-            </button>
-            <button id="filter-missing" type="button" class="btn btn-outline-secondary text-muted"
-                (click)="clickFilter('missing')">
-                Faltan traducciones
-                <span class="badge rounded-pill bg-secondary text-muted">{{countFilterShow('missing')}}</span>
-            </button>
-            <button id="filter-untranslated" type="button" class="btn btn-outline-secondary text-muted"
-                (click)="clickFilter('untranslated')">
-                Huerfanos
-                <span class="badge rounded-pill bg-secondary text-muted">{{countFilterShow('untranslated')}}</span>
-            </button>
-        </div>
-        <div class="btn-group btn-group-sm float-end" role="group">
-            <button id="filter-all" type="button" class="btn btn-outline-success" title="Nuevo" (click)="newItem()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                </svg>
-            </button>
-        </div>
+<div class="container-fluid px-5">
+  <div class="mb-3">
+    <div class="input-group input-group-sm" role="group">
+      <a id="filter-all" type="button" class="btn btn-outline-secondary text-muted active" (click)="clickFilter('all')"
+        href="javascript:void(0)">
+        Mostrar todos
+        <span class="badge rounded-pill bg-secondary">
+          {{countFilterShow('all')}}
+        </span>
+      </a>
+      <a id="filter-missing" type="button" class="btn btn-outline-secondary text-muted" (click)="clickFilter('missing')"
+        href="javascript:void(0)">
+        Faltan traducciones
+        <span class="badge rounded-pill bg-secondary text-muted">{{countFilterShow('missing')}}</span>
+      </a>
+      <a id="filter-untranslated" type="button" class="btn btn-outline-secondary text-muted"
+        (click)="clickFilter('untranslated')" href="javascript:void(0)">
+        Huerfanos
+        <span class="badge rounded-pill bg-secondary text-muted">{{countFilterShow('untranslated')}}</span>
+      </a>
+      <input type="text" class="form-control mx-3" placeholder="Buscar..." aria-label="Buscar..." name="input-search"
+        id="search-{{selectedProject.id}}">
+      <a id="filter-all" type="button" class="btn btn-outline-success" title="Nuevo" (click)="newItem()"
+        href="javascript:void(0)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
+          viewBox="0 0 16 16">
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+      </a>
     </div>
-    <div class="list-group" *ngIf="!show.loading.status">
-        <a href="javascript:void(0)" *ngFor="let literal of selectedProject.literals | orderBy: 'name'"
-            (click)="selectedLiteral(literal)" id="{{literal.id}}"
-            class="list-group-item list-group-item-action flex-column align-items-start" aria-current="true"
-            [ngClass]="checkAlert(literal, selectedProject.id)">
+  </div>
+  <div class="list-group" *ngIf="!show.loading.status">
+    <a href="javascript:void(0)" *ngFor="let literal of selectedProject.literals | orderBy: 'name'"
+      (click)="selectedLiteral(literal)" id="{{literal.id}}"
+      class="list-group-item list-group-item-action flex-column align-items-start" aria-current="true"
+      [ngClass]="checkAlert(literal, selectedProject.id)">
 
-            <div class="d-flex w-100 justify-content-between">
-                <p class="mb-1 text-dark"><small class="mb-1"><b>{{literal.name}}</b></small></p>
-                <small class="text-muted" [innerHTML]="checkLangs(literal.lang)"></small>
-            </div>
-            <small class="mb-1 text-muted" *ngIf="literal.lang.ES">{{literal.lang.ES}}</small>
-        </a>
-    </div>
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{literal.name}}</h5>
+        <small class="text-muted" [innerHTML]="checkLangs(literal.langs)"></small>
+      </div>
+      <small class="mb-1 text-muted" *ngIf="literal.langs.ES">{{literal.langs.ES}}</small>
+    </a>
+  </div>
 </div>
 <div class="card" *ngIf="selectedProject.literals.length === 0">
-    <div class="card-body">
-        <h4>0 Resultados</h4>
-    </div>
+  <div class="card-body">
+    <h4>0 Resultados</h4>
+  </div>
 </div>
-

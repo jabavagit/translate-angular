@@ -2,15 +2,17 @@
     <button type="button" class="btn btn-outline-success btn-sm" (click)="btnImport()">Importar traducciones</button>
 </div>
 <div class="card" id="menu">
-    <div class="list-group list-group-flush">
-        <button *ngFor="let item of menu; let i = index" id="menu-{{item.id}}"
-            [ngClass]="{active2: checkActiveItem(item.id)}" type="button"
-            class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-muted"
-            aria-current="true" (click)="getMenu(item)">
+  <div class="list-group list-group-flush">
+          <a id="menu-{{item.id}}" type="button" *ngFor="let item of menu; let i = index"
+              class="list-group-item list-group-item-action d-flex justify-content-between align-items-start text-muted"
+              aria-current="true" href="javascript:void(0)" (click)="getMenu(item)" [ngClass]="{'active-item': checkActiveItem(item.id)}">
 
-            <span>{{item.name}}</span>
-            <span class="badge rounded-pill bg-secondary text-muted">{{item.count.total}}</span>
-        </button>
-    </div>
-
+              <span>
+                {{item.name}}
+              </span>
+              <span class="badge rounded-pill bg-secondary">
+                {{item.countLiterals}}
+              </span>
+          </a>
+  </div>
 </div>
