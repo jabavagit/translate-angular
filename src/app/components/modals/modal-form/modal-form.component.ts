@@ -106,7 +106,7 @@ export class ModalFormComponent implements OnInit {
   }
 
   changeDataTextarea() {
-    const originData = this.originModel.langs[this.model.selectedLang];
+    const originData = this.originModel.lang[this.model.selectedLang];
     const editData = this.model.lang[this.model.selectedLang] = this.getValue('messageText');
     this.model.tabsEdit[this.model.selectedLang] = originData !== editData;
     this.disabledBtnSubmit();
@@ -157,7 +157,8 @@ export class ModalFormComponent implements OnInit {
 
   nameLiteralChange(event: any) {
     if (event) {
-      this.model.nameLiteral = event.toUpperCase()
+      this.model.nameLiteral = event.toUpperCase();
+      this.model.nameLiteral.replace(' ', '_');
       this.onFocusOutEvent(event);
     }
   }

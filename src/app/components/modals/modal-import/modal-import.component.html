@@ -1,25 +1,34 @@
 <div class="modal-header">
-  <h4 class="modal-title">Importar traducciones</h4>
+  <h4 class="modal-title">Importar</h4>
   <button type="button" class="" data-dismiss="modal" aria-label="Close" (click)="closeModal('close')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <!--form class="m-3" [formGroup]="importForm" *ngIf="showForm">
-    <div class="form-group mb-2">
-      <label for="file-import" *nfIf="false">Seleccione fichero JSON</label>
-      <input type="file" class="form-control-file" formControlName="fileImport" id="file-import" />
-    </div>
-    <button type="button" class="btn btn-primary mb-2" [disabled]="disabledBtnSubmit()" (click)="clickSubmit()">
-      <span *ngIf="!isLoading">Importar</span>
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
-    </button>
-  </!--form -->
-  <button type="button" class="btn btn-primary mb-2" [disabled]="disabledBtnSubmit()" (click)="clickSubmit()">
+  <!--button type="button" class="btn btn-primary mb-2" [disabled]="disabledBtnSubmit()" (click)="clickSubmit()">
     <span *ngIf="!isLoading">Importar</span>
     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isLoading"></span>
-  </button>
-  <div>
-    
+  </button-->
+
+
+
+  <div class="bd-callout bd-callout-warning d-flex ">
+    <div class="flex-grow-1 ms-3">
+      <h5 class="card-title">Resetear desde Origen</h5>
+      <p class="card-text">Se borrará la BD e importará desde {{uriOrigin}}</p>
+    </div>
+    <div class="d-flex align-items-stretch ">
+      <button class="btn btn-outline-warning d-flex align-items-center">Reset</button>
+    </div>
+  </div>
+
+  <div class="bd-callout bd-callout-info d-flex ">
+    <div class="flex-grow-1 ms-3">
+      <h5 class="card-title">Importar Excel</h5>
+    <p class="card-text">Import excel desde {{uriExcel}}</p>
+    </div>
+    <div class="d-flex align-items-stretch ">
+      <button class="btn btn-outline-primary d-flex align-items-center">Importar</button>
+    </div>
   </div>
 </div>

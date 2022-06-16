@@ -1,6 +1,6 @@
 <div class="container-fluid px-5">
   <div class="mb-3">
-    <div class="input-group input-group-sm" role="group">
+    <div id="filters-group" class="input-group input-group-sm" role="group">
       <a id="filter-all" type="button" class="btn btn-outline-secondary text-muted active" (click)="clickFilter('all')"
         href="javascript:void(0)">
         Mostrar todos
@@ -18,9 +18,10 @@
         Huerfanos
         <span class="badge rounded-pill bg-secondary text-muted">{{countFilterShow('untranslated')}}</span>
       </a>
-      <input type="text" class="form-control mx-3" placeholder="Buscar..." aria-label="Buscar..." name="input-search"
-        id="search-{{selectedProject.id}}">
-      <a id="filter-all" type="button" class="btn btn-outline-success" title="Nuevo" (click)="newItem()"
+
+      <input class="form-control mx-2" type="text" placeholder="Buscar..." (keyup)="search($event)">
+
+      <a id="new-item" type="button" class="btn btn-outline-success" title="Nuevo" (click)="newItem()"
         href="javascript:void(0)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
           viewBox="0 0 16 16">

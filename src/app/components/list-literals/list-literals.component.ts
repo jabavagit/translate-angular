@@ -11,6 +11,7 @@ export class ListLiteralsComponent implements OnInit {
   @Input() alerts!: any;
   @Input() selectedProject!: any;
   @Output() clickLiteralEvent = new EventEmitter<any>();
+  @Output() keyUpSearchEvent = new EventEmitter<any>();
 
   originSelectedProject: any;
   styleAllEmpty: string;
@@ -97,6 +98,8 @@ export class ListLiteralsComponent implements OnInit {
       countFilter = countFilter;
     } else if (type === FILTERS.UNTRANSLATED) {
       countFilter = countUn;
+    } else {
+      countFilter = this.originSelectedProject.literals.length;
     }
 
     const btnFilter: any = document.getElementById(`filter-${type}`);
@@ -204,6 +207,15 @@ export class ListLiteralsComponent implements OnInit {
 
   newItem() {
     this.clickLiteralEvent.emit();
+  }
+
+  search(event: any) {
+    const isTrue: boolean = (event.target?.value.length > 0);
+    const dataEvent = {
+      status: isTrue,
+      value: isTrue ? event.target.value : null
+    }
+    this.keyUpSearchEvent.emit(dataEvent);
   }
 
 }

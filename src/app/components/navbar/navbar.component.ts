@@ -10,8 +10,7 @@ export class NavbarComponent implements OnInit {
   breadcrumb!: Array<string>;
   @Input()
   showBread!: boolean;
-  
-  @Output() keyUpSearchEvent = new EventEmitter<any>();
+
   @Output() generateJsonEvent = new EventEmitter<any>();
 
   constructor() { }
@@ -23,14 +22,14 @@ export class NavbarComponent implements OnInit {
     return ' > ' + this.breadcrumb.join(' > ');
   }
 
-  search(event: any) {
+  /*search(event: any) {
     const isTrue: boolean = (event.target?.value.length > 0);
     const dataEvent = {
       status: isTrue,
       value: isTrue ? event.target.value : null
     }
     this.keyUpSearchEvent.emit(dataEvent);
-  }
+  }*/
 
   generateJson() {
     this.generateJsonEvent.emit();

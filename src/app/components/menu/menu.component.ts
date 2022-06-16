@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @Input() menu!: any;
+  @Input() url!: any;
   @Output() clickItemEvent = new EventEmitter<any>();
   @Output() btnImportEvent = new EventEmitter<any>();
   activeItem = {
@@ -30,6 +31,6 @@ export class MenuComponent implements OnInit {
   }
 
   btnImport() {
-    this.btnImportEvent.emit({});
+    this.btnImportEvent.emit();
   }
 }

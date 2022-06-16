@@ -7,3 +7,45 @@
 body{
     background-color: #F9F9F9;
 }
+
+.bd-callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}
+.bd-callout-reverse {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #eee;
+  border-right-width: .25rem;
+  border-radius: .25rem;
+}
+
+.bd-callout h4 {
+  margin-top: 0;
+  margin-bottom: .25rem;
+}
+
+.bd-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bd-callout code {
+  border-radius: .25rem;
+}
+
+.bd-callout + .bd-callout {
+  margin-top: -.25rem;
+}
+
+
+.bd-callout-info { border-left-color: #007ea7; background-color: #f4fcff;}
+.bd-callout-info-reverse { border-right-color: #007ea7; background-color: #f4fcff;}
+.bd-callout-warning { border-left-color: #f0ad4e; background-color: #fffdf4; }
+.bd-callout-warning-reverse { border-right-color: #f0ad4e; background-color: #fffdf4; }
+.bd-callout-danger {  }
+

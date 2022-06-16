@@ -12,6 +12,8 @@ export class ModalImportComponent implements OnInit {
   isLoading: boolean;
   showForm: boolean;
   dataImport: any;
+  uriOrigin: string = '';
+  uriExcel: string = '';
 
   constructor(private activeModal: NgbActiveModal, private apiService: ApiService) {
     this.isLoading = false;
@@ -19,6 +21,11 @@ export class ModalImportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (this.model) {
+      this.uriOrigin = this.model.importOrigin;
+      this.uriExcel = this.model.importExcel;
+    }
   }
 
   closeModal(data: any) {

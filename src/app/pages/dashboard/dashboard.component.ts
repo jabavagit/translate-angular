@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
         this.show.menu = true;
         this.show.loading.status = false;
         this.model.menu = data.dashboard.menu;
+        this.model.url = data.dashboard.url;
 
         this.setLog(this.typeLog.INFO, 'Inicio OK');
       } else {
@@ -63,6 +64,7 @@ export class DashboardComponent implements OnInit {
       id = this.model.selectedProject.id;
     }
     this.show.data = false;
+    this.show.dataImport = false;
     this.show.list.loading.status = !this.show.data;
 
     this.apiService.getData(`projects/${id}`).subscribe((data: any) => {
@@ -153,7 +155,24 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    this.model.selectedProject.literals = result;
+    if(data.status){
+      this.model.selectedProject.literals = result;
+    } else {
+      this.model.selectedProject.literals = this.model.selectedProjectOrigin?.literals;
+    }
+
+    const filterAll: HTMLElement | null = document.getElementById('filter-all');
+    const filterMissing: HTMLElement | null = document.getElementById('filter-missing');
+    const filterUntranslated: HTMLElement | null = document.getElementById('filter-untranslated');
+
+    if (filterAll && filterMissing && filterUntranslated) {
+      filterAll.classList.remove('active');
+      filterAll.classList.add('active');
+      filterMissing.classList.remove('active');
+      filterUntranslated.classList.remove('active');
+    }
+
+
   }
 
   eventGenerateJson(event: Event) {
@@ -164,7 +183,7 @@ export class DashboardComponent implements OnInit {
 
   btnImport(event: any) {
     const modalRef = this.modalService.open(ModalImportComponent);
-    modalRef.componentInstance.model = null;
+    modalRef.componentInstance.model = this.model.url;
     modalRef.result.then((result) => {
       if (result !== 'close') {
         this.setLog(this.typeLog.SUCCESS, 'close');
