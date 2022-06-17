@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ export class DashboardComponent implements OnInit {
   icons: any = ICONS;
   typeLog: any = TYPE_LOG;
 
-  constructor(private apiService: ApiService, public modalService: NgbModal) { }
+  constructor(private apiService: ApiService, public modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
     this.initModel();
@@ -186,9 +187,14 @@ export class DashboardComponent implements OnInit {
     modalRef.componentInstance.model = this.model.url;
     modalRef.result.then((result) => {
       if (result !== 'close') {
-        this.setLog(this.typeLog.SUCCESS, 'close');
-        this.show.dataImport = true;
-        this.model.importData = result;
+        if (result === 'origin') {
+          this.setLog(this.typeLog.SUCCESS, 'Reset origin');
+          window.location.reload();
+        } else {
+          this.setLog(this.typeLog.SUCCESS, 'Excel importado');
+          this.show.dataImport = true;
+          this.model.importData = result;
+        }
       }
 
     }).catch((error) => {

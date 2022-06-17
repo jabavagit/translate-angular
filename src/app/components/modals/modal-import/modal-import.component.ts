@@ -21,28 +21,37 @@ export class ModalImportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     if (this.model) {
       this.uriOrigin = this.model.importOrigin;
       this.uriExcel = this.model.importExcel;
     }
   }
 
-  closeModal(data: any) {
+  closeModal(data?: any) {
     this.activeModal.close(data);
   }
 
-  disabledBtnSubmit() {
-
+  resetOrigin() {
+    this.apiService.resetOrigin().subscribe({
+      next: (data: any) => {
+        if (data.code === 200) {
+          this.closeModal('origin');
+        }
+      },
+      error: (e) => console.error(e)
+    });
   }
 
-  clickSubmit() {
-    this.apiService.getImport().subscribe((data: any) => {
-      if (data.code === 200) {
-        this.dataImport = data.data;
-        this.showForm = true;
-        this.closeModal(this.dataImport);
-      }
+  importExcel() {
+    this.apiService.getImport().subscribe({
+      next: (data: any) => {
+        if (data.code === 200) {
+          this.dataImport = data.data;
+          this.showForm = true;
+          this.closeModal(this.dataImport);
+        }
+      },
+      error: (e) => console.error(e)
     });
   }
 

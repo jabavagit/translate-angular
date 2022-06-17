@@ -21,8 +21,11 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/json/${id}`);
   }
 
-  
   getImport() {
-    return this.http.get(`${this.baseUrl}/import`);
+    return this.http.get(`${this.baseUrl}/import/excel`);
+  }
+
+  resetOrigin() {
+    return this.http.get(`${this.baseUrl}/import/origin`);
   }
 }

@@ -11,7 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { LogComponent } from './components/log/log.component';
 import { ListLiteralsComponent } from './components/list-literals/list-literals.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ArrayToStringPipe } from './pipes/array-to-string.pipe';
@@ -37,6 +37,7 @@ import { ImportLiteralsComponent } from './components/import-literals/import-lit
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgPipesModule
   ],
   providers: [ApiService],
